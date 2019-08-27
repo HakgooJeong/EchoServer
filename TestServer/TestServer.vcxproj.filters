@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="_Pre">
+      <UniqueIdentifier>{31d15dbc-f9ca-4066-91bd-9dba20214762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestServer">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{0352f808-71e8-4abf-9f80-05c002af126f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>_Pre</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>_Pre</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>User</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>_Pre</Filter>
+    </ClCompile>
+    <ClCompile Include="TestServer.cpp">
+      <Filter>TestServer</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
