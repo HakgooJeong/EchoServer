@@ -21,6 +21,7 @@ namespace NetSession
 		typedef std::shared_ptr<TcpSession>	ptrTcpSession;
 		typedef std::deque<Message> Message_queue;
 		typedef std::function<void(ptrTcpSession, const char*)> funcDisconnect;
+		typedef boost::array<char, Message::Message::MAX_LENGTH> Buffer;
 
     public:
 
@@ -56,7 +57,6 @@ namespace NetSession
 		void TcpSession::push(Message& msg);
 
         tcp::socket socket;
-		boost::array<char, Message::Message::MAX_LENGTH> buffer;
 		std::shared_ptr<TcpSession::Message_queue> queue;
 		__int64 key = 0;
 		boost::mutex mutex;		

@@ -13,13 +13,14 @@ namespace NetSession
 
     void TcpSession::do_read()
     {
+		auto buffer = std::make_shared<Buffer>();
         auto self(shared_from_this());
-        socket.async_read_some(boost::asio::buffer(buffer, Message::MAX_LENGTH),
-            [this, self](boost::system::error_code ec, std::size_t length)
+        socket.async_read_some(boost::asio::buffer(buffer.get(), Message::MAX_LENGTH),
+            [this, self, buffer](boost::system::error_code ec, std::size_t length)
 			{
 				if (!ec)
 				{
-					Message msg(reinterpret_cast<void*>(buffer.c_array()));
+					Message msg(reinterpret_cast<void*>(buffer.get()->c_array()));
 					self->push(msg);
 
 					printf("packet Inserted [key:%lld][size:%d]\n", self->getKey(), length);
