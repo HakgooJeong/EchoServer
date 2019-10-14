@@ -68,7 +68,7 @@ namespace NetServer
 		clients.erase(key);
 	}
 
-	void ClientMgr::broadcast(void* data)
+	void ClientMgr::broadcast(const void* data)
 	{
 		boost::unique_lock<boost::mutex> scoped_lock(mutex);
 
@@ -80,7 +80,7 @@ namespace NetServer
 		}
 	}
 
-	Client::ptrClient ClientMgr::find(std::string& guid)
+	Client::ptrClient ClientMgr::find(const std::string& guid)
 	{
 		boost::unique_lock<boost::mutex> scoped_lock(mutex);
 

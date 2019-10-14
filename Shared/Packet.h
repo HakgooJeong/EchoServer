@@ -29,6 +29,7 @@ struct PKT_CS_CHAT
 
 struct PKT_SC_CHAT
 {
+	char nickname[10] = { 0, };
 	int length;
 };
 #pragma pack(pop)

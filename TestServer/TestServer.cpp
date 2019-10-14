@@ -178,7 +178,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}));
 
 		server.procs.insert(std::make_pair<unsigned short, std::function<void(NetServer::Client::ptrClient, const void*)> >(
-			Protocol::CHAT, [](NetServer::Client::ptrClient client, const void* data) {
+			Protocol::CHAT, [&server](NetServer::Client::ptrClient client, const void* data) {
 
 			// ToKnow : 채팅 로직
 
@@ -192,17 +192,18 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			PKT_CS_CHAT* recved = (PKT_CS_CHAT*)data;
 
-			PKT_SC_CHAT chat;
-			chat.length = recved->length;
+			PKT_SC_CHAT send;
+			memcpy_s(send.nickname, 10, user->getNickname().c_str(), 10);
+			send.length = recved->length;
 
 			printf("recv:%s\n", (char*)(recved+1));
 
 			NetSession::Message packet;
-			packet << chat;
-			packet.write((char*)(recved + 1), (unsigned short)chat.length);
+			packet << send;
+			packet.write((char*)(recved + 1), (unsigned short)send.length);
 			packet.close(Protocol::CHAT);
 
-			user->send(packet.get());
+			server.connectedClientMgr->broadcast(packet.get());
 		}));
 
 		server.join();

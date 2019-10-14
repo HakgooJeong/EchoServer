@@ -18,11 +18,11 @@ namespace NetServer
 		
 		void remove(Client::ptrClient client);
 		void remove(__int64& key);
-		void broadcast(void* data);
-		Client::ptrClient find(std::string& guid);
+		void broadcast(const void* data);
+		Client::ptrClient find(const std::string& guid);
 
 		template <typename T>
-		std::shared_ptr<T>	getImpl(__int64& key);
+		std::shared_ptr<T>	getElement(const __int64& key);
 
 	private:
 		std::map<__int64, Client::ptrClient>		clients;
@@ -31,7 +31,7 @@ namespace NetServer
 	};
 
 	template <typename T>
-	std::shared_ptr<T> ClientMgr::getImpl(__int64& key)
+	std::shared_ptr<T> ClientMgr::getElement(const __int64& key)
 	{
 		boost::unique_lock<boost::mutex> scoped_lock(mutex);
 

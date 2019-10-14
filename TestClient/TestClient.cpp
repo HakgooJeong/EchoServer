@@ -141,7 +141,7 @@ int _tmain(int argc, _TCHAR* argv[])
 						size_t szTail = 0;
 						char* msg = (char*)packet->tail(sizeof(PKT_SC_CHAT), szTail);
 
-						printf("recv:%s\n", msg);
+						printf("recv:from %s : %s\n", recved->nickname, msg);
 					}
 					break;
 
